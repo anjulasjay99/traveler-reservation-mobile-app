@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Traveler Reservation</string>
+    <string name="nic">National Identity Card Number (NIC)</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="phone_no">Phone Number</string>
+    <string name="email">E-Mail Address</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.travelerreservation.managers;
 
+import android.util.Log;
+
 import com.example.travelerreservation.models.SignUpRequest;
 import com.example.travelerreservation.models.SignUpResponse;
 import com.example.travelerreservation.models.SignUpService;
@@ -58,7 +60,9 @@ public class SignUpManager {
 
                     @Override
                     public void onFailure(Call<SignUpResponse> call, Throwable t) {
-                        onError.accept("Unknown error occurred while signing up");
+                        Log.e("SIGNUPERR:", t.toString());
+                        onError.accept("Unknown error occurred when signing up");
+
                     }
                 });
 

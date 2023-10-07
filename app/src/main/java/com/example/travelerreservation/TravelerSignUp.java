@@ -51,6 +51,15 @@ public class TravelerSignUp extends AppCompatActivity {
         String password = this.passwordEditText.getText().toString();
         String confPassword = this.confPasswordEditText.getText().toString();
 
+        nic = "19990531170V";
+        firstName = "Anjula";
+        lastName = "Jayasinghe";
+        dateOfBirth = "1999-02-22";
+        phoneNo = "0772665133";
+        email = "anjulasjay@gmail.com";
+        password = "abcd1234";
+        confPassword = "abcd1234";
+
         if (!nic.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !phoneNo.isEmpty() && !dateOfBirth.isEmpty() && !email.isEmpty()
                 && !password.isEmpty() && !confPassword.isEmpty()) {
             if (confPassword.equals(password)) {

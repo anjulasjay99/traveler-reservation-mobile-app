@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.example.travelerreservation.managers.ContextManager;
 import com.example.travelerreservation.managers.SignUpManager;
-import com.example.travelerreservation.models.SignUpService;
 
 public class TravelerSignUp extends AppCompatActivity {
     EditText nicEditText;
@@ -26,6 +25,7 @@ public class TravelerSignUp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_traveler_sign_up);
         ContextManager.getInstance().setApplicationContext(getApplicationContext());
         this.signUpManager = SignUpManager.getInstance();
@@ -46,7 +46,7 @@ public class TravelerSignUp extends AppCompatActivity {
         String firstName = this.firstNameEditText.getText().toString();
         String lastName = this.lastNameEditText.getText().toString();
         String dateOfBirth = this.dateOfBirthEditText.getText().toString();
-        String phoneNo = this.phoneEditText.getText().toString();
+        int phoneNo = Integer.parseInt(this.phoneEditText.getText().toString());
         String email = this.emailEditText.getText().toString();
         String password = this.passwordEditText.getText().toString();
         String confPassword = this.confPasswordEditText.getText().toString();
@@ -55,12 +55,12 @@ public class TravelerSignUp extends AppCompatActivity {
         firstName = "Anjula";
         lastName = "Jayasinghe";
         dateOfBirth = "1999-02-22";
-        phoneNo = "0772665133";
+        phoneNo = 0772665133;
         email = "anjulasjay@gmail.com";
         password = "abcd1234";
         confPassword = "abcd1234";
 
-        if (!nic.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !phoneNo.isEmpty() && !dateOfBirth.isEmpty() && !email.isEmpty()
+        if (!nic.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !String.valueOf(phoneNo).isEmpty() && !dateOfBirth.isEmpty() && !email.isEmpty()
                 && !password.isEmpty() && !confPassword.isEmpty()) {
             if (confPassword.equals(password)) {
                 signUpManager.signUp(nic, firstName, lastName, dateOfBirth, phoneNo, email, password, () -> handleSignUpSuccessful(),

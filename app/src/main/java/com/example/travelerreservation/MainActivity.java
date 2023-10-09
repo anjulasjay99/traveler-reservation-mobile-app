@@ -17,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
     Button logout;
 
+    Button myProfile;
+
     LogInManager logInManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ContextManager.getInstance().setApplicationContext(getApplicationContext());
+        getSupportActionBar().setTitle("Home");
+
 
         this.logInManager = LogInManager.getInstance();
 
@@ -35,10 +39,13 @@ public class MainActivity extends AppCompatActivity {
         this.loginBtn = findViewById(R.id.travelerSignUpBtn2);
         this.updateProfileBtn = findViewById(R.id.travelerSignUpBtn3);
         this.logout = findViewById(R.id.logoutBtn);
+        this.myProfile = findViewById(R.id.viewProfileBtn);
+
         this.travelerSignUpBtn.setOnClickListener(view -> onClickTravelerSignUp());
         this.loginBtn.setOnClickListener(view -> onClickLogin());
         this.updateProfileBtn.setOnClickListener(view -> onClickUpdate());
         this.logout.setOnClickListener(view -> onClickLogout());
+        this.myProfile.setOnClickListener(view -> onClickMyProfile());
     }
 
     private void onClickTravelerSignUp() {
@@ -62,5 +69,10 @@ public class MainActivity extends AppCompatActivity {
     private void onClickLogout() {
         this.logInManager.logout();
         onClickLogin();
+    }
+
+    private void onClickMyProfile() {
+        Intent intent = new Intent(this, TravelerProfile.class);
+        startActivity(intent);
     }
 }

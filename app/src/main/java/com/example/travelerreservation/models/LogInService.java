@@ -5,6 +5,6 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface LogInService {
-    @POST("api/travelerLogin")
+    @POST("travelers/login")
     Call<LogInResponse> login(@Body LogInRequest logInRequest);
 }

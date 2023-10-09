@@ -2,6 +2,7 @@ package com.example.travelerreservation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -21,12 +22,16 @@ public class LogIn extends AppCompatActivity {
     TextView signUpLink;
 
     Button loginBtn;
+
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
 
         ContextManager.getInstance().setApplicationContext(getApplicationContext());
+        getSupportActionBar().hide();
+
         logInManager = LogInManager.getInstance();
 
         this.emailEditText = findViewById(R.id.loginEmailEditText);
@@ -41,16 +46,27 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void login(){
-        logInManager.login(
-                emailEditText.getText().toString(),
-                passwordEditText.getText().toString(),
-                () -> handleLoginSuccess(),
-                error -> handleLoginFailed(error));
+        if(!emailEditText.getText().toString().isEmpty() && !passwordEditText.getText().toString().isEmpty()) {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Loading...");
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            logInManager.login(
+                    emailEditText.getText().toString(),
+                    passwordEditText.getText().toString(),
+                    () -> handleLoginSuccess(),
+                    error -> handleLoginFailed(error));
+        } else{
+            Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     private void handleLoginSuccess(){
         //logInManager.setLoggedInState(true);
         Toast.makeText(this, "SUCCESS", Toast.LENGTH_LONG).show();
+        progressDialog.dismiss();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
@@ -58,6 +74,7 @@ public class LogIn extends AppCompatActivity {
 
 
     private void handleLoginFailed(String error){
+        progressDialog.dismiss();
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
 

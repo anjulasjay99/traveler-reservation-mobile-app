@@ -18,11 +18,29 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".DeactivateProfile"
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.travelerreservation.TravelerProfile" />
+        </activity>
+        <activity
+            android:name=".TravelerProfile"
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.travelerreservation.MainActivity" />
+        </activity>
+        <activity
             android:name=".Profile"
             android:exported="false" />
         <activity
             android:name=".UpdateProfile"
-            android:exported="false" />
+            android:exported="false" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.travelerreservation.TravelerProfile" />
+        </activity>
         <activity
             android:name=".LogIn"
             android:exported="false" />

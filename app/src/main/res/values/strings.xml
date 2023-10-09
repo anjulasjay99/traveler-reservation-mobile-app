@@ -13,4 +13,9 @@
     <string name="sign_up_hint">Don\'t have an account?</string>
     <string name="update_profile">Update Profile</string>
     <string name="logout">Log Out</string>
+    <string name="my_profile">My Profile</string>
+    <string name="update_profile_link">Change Profile Details</string>
+    <string name="deactivate_profile_link">Deactivate Profile</string>
+    <string name="confirm">Confirm</string>
+    <string name="confirm_pwd_title">Enter your password to confirm</string>
 </resources>

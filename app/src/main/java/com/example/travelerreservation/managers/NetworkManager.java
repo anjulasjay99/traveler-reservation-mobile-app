@@ -12,7 +12,7 @@ public class NetworkManager {
     private static NetworkManager singleton;
 
     private Retrofit retrofit;
-    private final String baseUrl = "https://localhost:44433/";
+    private final String baseUrl = "https://localhost:44433/api/";
     private ConnectivityManager connectivityManager;
 
     public static NetworkManager getInstance(){

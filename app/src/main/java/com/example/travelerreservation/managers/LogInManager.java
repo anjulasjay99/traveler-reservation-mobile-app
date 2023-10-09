@@ -95,7 +95,7 @@ public class LogInManager {
                             }
 
                         } else {
-                            onError.accept("An error occurred!");
+                            onError.accept("Incorrect Credentials");
                         }
                     }
 

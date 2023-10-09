@@ -2,6 +2,7 @@ package com.example.travelerreservation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -26,13 +27,21 @@ public class UpdateProfile extends AppCompatActivity {
     EditText emailEditText;
     Button updateBtn;
 
+    String password;
+
     UpdateProfileManager updateProfileManager;
 
     DatabaseManager databaseManager;
+
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_profile);
+
+        getSupportActionBar().setTitle("Update Profile");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         ContextManager.getInstance().setApplicationContext(getApplicationContext());
         this.updateProfileManager = UpdateProfileManager.getInstance();
@@ -61,8 +70,12 @@ public class UpdateProfile extends AppCompatActivity {
 
 
         if (!nic.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !phoneNo.isEmpty() && !dateOfBirth.isEmpty() && !email.isEmpty()) {
-
-                updateProfileManager.updateProfile(nic, firstName, lastName, dateOfBirth, Integer.parseInt(phoneNo), email, () -> handleUpdateSuccessful(),
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Loading...");
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+                updateProfileManager.updateProfile(nic, firstName, lastName, dateOfBirth, Integer.parseInt(phoneNo), email, this.password, () -> handleUpdateSuccessful(),
                         error -> handleUpdateFailed(error)
                 );
 
@@ -72,10 +85,12 @@ public class UpdateProfile extends AppCompatActivity {
     }
 
     private void handleUpdateSuccessful(){
+        progressDialog.dismiss();
         Toast.makeText(this, "Successful!", Toast.LENGTH_LONG).show();
     }
 
     private void handleUpdateFailed(String error){
+        progressDialog.dismiss();
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
 
@@ -89,8 +104,14 @@ public class UpdateProfile extends AppCompatActivity {
             this.phoneEditText.setText(String.valueOf(users.get(0).phoneNo));
             this.emailEditText.setText(users.get(0).email.toString());
             this.dateOfBirthEditText.setText(users.get(0).dateOfBirth.toString());
-
+            this.password = users.get(0).password;
 
         }).start();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

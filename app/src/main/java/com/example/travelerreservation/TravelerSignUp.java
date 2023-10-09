@@ -2,6 +2,8 @@ package com.example.travelerreservation;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,6 +23,8 @@ public class TravelerSignUp extends AppCompatActivity {
     EditText confPasswordEditText;
     Button singUpBtn;
 
+    ProgressDialog progressDialog;
+
     SignUpManager signUpManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,9 @@ public class TravelerSignUp extends AppCompatActivity {
 
         setContentView(R.layout.activity_traveler_sign_up);
         ContextManager.getInstance().setApplicationContext(getApplicationContext());
+
+        getSupportActionBar().hide();
+
         this.signUpManager = SignUpManager.getInstance();
         this.nicEditText = findViewById(R.id.nicEditText);
         this.firstNameEditText = findViewById(R.id.firstNameEditText);
@@ -46,24 +53,21 @@ public class TravelerSignUp extends AppCompatActivity {
         String firstName = this.firstNameEditText.getText().toString();
         String lastName = this.lastNameEditText.getText().toString();
         String dateOfBirth = this.dateOfBirthEditText.getText().toString();
-        int phoneNo = Integer.parseInt(this.phoneEditText.getText().toString());
+        String phoneNo = this.phoneEditText.getText().toString();
         String email = this.emailEditText.getText().toString();
         String password = this.passwordEditText.getText().toString();
         String confPassword = this.confPasswordEditText.getText().toString();
 
-        nic = "19990531170V";
-        firstName = "Anjula";
-        lastName = "Jayasinghe";
-        dateOfBirth = "1999-02-22";
-        phoneNo = 0772665133;
-        email = "anjulasjay@gmail.com";
-        password = "abcd1234";
-        confPassword = "abcd1234";
-
         if (!nic.isEmpty() && !firstName.isEmpty() && !lastName.isEmpty() && !String.valueOf(phoneNo).isEmpty() && !dateOfBirth.isEmpty() && !email.isEmpty()
                 && !password.isEmpty() && !confPassword.isEmpty()) {
+            progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Loading...");
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
             if (confPassword.equals(password)) {
-                signUpManager.signUp(nic, firstName, lastName, dateOfBirth, phoneNo, email, password, () -> handleSignUpSuccessful(),
+                signUpManager.signUp(nic, firstName, lastName, dateOfBirth, Integer.parseInt(phoneNo), email, password, () -> handleSignUpSuccessful(),
                         error -> handleSignUpFailed(error)
                 );
             } else {
@@ -75,10 +79,14 @@ public class TravelerSignUp extends AppCompatActivity {
     }
 
     private void handleSignUpSuccessful(){
+        progressDialog.dismiss();
         Toast.makeText(this, "Successful!", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, LogIn.class);
+        startActivity(intent);
     }
 
     private void handleSignUpFailed(String error){
+        progressDialog.dismiss();
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
 }

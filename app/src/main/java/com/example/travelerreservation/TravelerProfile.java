@@ -72,11 +72,13 @@ public class TravelerProfile extends AppCompatActivity {
 
     }
 
+    //Go to update profile screen
     private void onClickUpdateLink() {
         Intent intent = new Intent(this, UpdateProfile.class);
         startActivity(intent);
     }
 
+    //Go to deactivate screen
     private void onClickDeactivate() {
         Intent intent = new Intent(this, DeactivateProfile.class);
         intent.putExtra("nic", this.nic.getText().toString());
@@ -84,6 +86,7 @@ public class TravelerProfile extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Log out from the account
     private void onClickLogout() {
         this.logInManager.logout();
         Intent intent = new Intent(this, LogIn.class);

@@ -18,6 +18,7 @@ public class DeactivateManager {
     private static DeactivateManager singleton;
     private DeactivateService deactivateService;
 
+    //Returns DeactivateManager singleton object
     public static DeactivateManager getInstance() {
         if (singleton == null)
             singleton = new DeactivateManager();
@@ -29,6 +30,7 @@ public class DeactivateManager {
         deactivateService = NetworkManager.getInstance().createService(DeactivateService.class);
     }
 
+    //Calls backend API to deactivate use account
     public void deactivateProfile(
             String nic,
             Runnable onSuccess,

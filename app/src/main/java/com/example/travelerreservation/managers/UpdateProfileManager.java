@@ -16,6 +16,7 @@ public class UpdateProfileManager {
     private static UpdateProfileManager singleton;
     private UpdateProfileService updateProfileService;
 
+    //Returns UpdateProfileManager singleton object
     public static UpdateProfileManager getInstance() {
         if (singleton == null)
             singleton = new UpdateProfileManager();
@@ -27,6 +28,7 @@ public class UpdateProfileManager {
         updateProfileService = NetworkManager.getInstance().createService(UpdateProfileService.class);
     }
 
+    //Calls backend API to update traveler profile
     public void updateProfile(
             String nic,
             String firstName,

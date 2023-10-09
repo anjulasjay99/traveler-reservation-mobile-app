@@ -35,16 +35,9 @@ public class MainActivity extends AppCompatActivity {
             this.onClickLogin();
         }
 
-        this.travelerSignUpBtn = findViewById(R.id.travelerSignUpBtn);
-        this.loginBtn = findViewById(R.id.travelerSignUpBtn2);
-        this.updateProfileBtn = findViewById(R.id.travelerSignUpBtn3);
-        this.logout = findViewById(R.id.logoutBtn);
+
         this.myProfile = findViewById(R.id.viewProfileBtn);
 
-        this.travelerSignUpBtn.setOnClickListener(view -> onClickTravelerSignUp());
-        this.loginBtn.setOnClickListener(view -> onClickLogin());
-        this.updateProfileBtn.setOnClickListener(view -> onClickUpdate());
-        this.logout.setOnClickListener(view -> onClickLogout());
         this.myProfile.setOnClickListener(view -> onClickMyProfile());
     }
 

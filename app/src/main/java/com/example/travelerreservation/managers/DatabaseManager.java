@@ -9,6 +9,8 @@ public class DatabaseManager {
     private final String databaseName = "appdb";
     private ContextManager contextManager;
     private AppDatabase database;
+
+    //Returns DatabaseManager singleton object
     public static DatabaseManager getInstance(){
         if (singleton == null)
             singleton = new DatabaseManager();

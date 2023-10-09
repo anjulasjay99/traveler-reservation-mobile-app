@@ -17,6 +17,7 @@ public class SignUpManager {
     private static SignUpManager singleton;
     private SignUpService signUpService;
 
+    //return SignUpManager singleton object
     public static SignUpManager getInstance() {
         if (singleton == null)
             singleton = new SignUpManager();
@@ -28,6 +29,7 @@ public class SignUpManager {
         signUpService = NetworkManager.getInstance().createService(SignUpService.class);
     }
 
+    //Calls backend API to create a new account
     public void signUp(
             String nic,
             String firstName,

@@ -50,6 +50,7 @@ public class DeactivateProfile extends AppCompatActivity {
 
     }
 
+    //Verify password and deactivate account
     private void onClickConfirm() {
         String pwd = this.password.getText().toString().trim();
 
@@ -78,10 +79,12 @@ public class DeactivateProfile extends AppCompatActivity {
 
     }
 
+    //Display toast message
     private void displayToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
+    //Called if the user account was deactivated successfully
     private void handleUpdateSuccessful(){
         progressDialog.dismiss();
         Toast.makeText(this, "Successful!", Toast.LENGTH_LONG).show();
@@ -92,6 +95,7 @@ public class DeactivateProfile extends AppCompatActivity {
         finish();
     }
 
+    //Called if the request failed
     private void handleUpdateFailed(String error){
         progressDialog.dismiss();
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();

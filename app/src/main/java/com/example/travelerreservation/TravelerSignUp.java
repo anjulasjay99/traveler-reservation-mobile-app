@@ -48,6 +48,7 @@ public class TravelerSignUp extends AppCompatActivity {
         this.singUpBtn.setOnClickListener(view -> signUp());
     }
 
+    //Validate details and sign up
     private void signUp() {
         String nic = this.nicEditText.getText().toString();
         String firstName = this.firstNameEditText.getText().toString();
@@ -78,6 +79,7 @@ public class TravelerSignUp extends AppCompatActivity {
         }
     }
 
+    //Called if sign up was successful
     private void handleSignUpSuccessful(){
         progressDialog.dismiss();
         Toast.makeText(this, "Successful!", Toast.LENGTH_LONG).show();
@@ -85,6 +87,7 @@ public class TravelerSignUp extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Called if sign up failed
     private void handleSignUpFailed(String error){
         progressDialog.dismiss();
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();

@@ -29,6 +29,7 @@ public class LogInManager {
     private final String userNicKey = "user_nic";
 
 
+    //Returns LogInManager singleton object
     public static LogInManager getInstance() {
         if (singleton == null)
             singleton = new LogInManager();
@@ -41,6 +42,7 @@ public class LogInManager {
         databaseManager = DatabaseManager.getInstance();
     }
 
+    //Validate email and password
     public Boolean validateCredentials(String email, String password) {
         if (email == null || email.length() == 0)
             return false;
@@ -51,8 +53,7 @@ public class LogInManager {
         return true;
     }
 
-
-
+    //Calls backend API to verify user identity
     public void login(
             String email,
             String password,
@@ -109,6 +110,7 @@ public class LogInManager {
 
     }
 
+    //Set whether the user is logged in or not
     public void setLoggedInState(boolean isLoggedIn, String nic){
         Context context = ContextManager.getInstance().getApplicationContext();
         SharedPreferences.Editor editor = context.getSharedPreferences(loginStateFile, Context.MODE_PRIVATE).edit();
@@ -117,12 +119,14 @@ public class LogInManager {
         editor.apply();
     }
 
+    //Check whether the user is logged in or not
     public boolean getIsLoggedIn(){
         Context context = ContextManager.getInstance().getApplicationContext();
         SharedPreferences prefs = context.getSharedPreferences(loginStateFile, Context.MODE_PRIVATE);
         return prefs.getBoolean(isLoggedInKey, false);
     }
 
+    //Save logged in user's details to the SQLite DB
     public void saveUserDetails(UserDto userDto) {
         new Thread(() -> {
             databaseManager.db().userDao().removeAll();
@@ -132,6 +136,7 @@ public class LogInManager {
         }).start();
     }
 
+    //Called to logout
     public void logout() {
         new Thread(() -> {
             Context context = ContextManager.getInstance().getApplicationContext();

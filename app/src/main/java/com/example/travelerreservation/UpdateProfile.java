@@ -60,6 +60,7 @@ public class UpdateProfile extends AppCompatActivity {
         this.getUserDetails();
     }
 
+    //Validate detials and update profile
     private void update() {
         String nic = this.nicEditText.getText().toString();
         String firstName = this.firstNameEditText.getText().toString();
@@ -84,16 +85,19 @@ public class UpdateProfile extends AppCompatActivity {
         }
     }
 
+    //Called if update succeeded
     private void handleUpdateSuccessful(){
         progressDialog.dismiss();
         Toast.makeText(this, "Successful!", Toast.LENGTH_LONG).show();
     }
 
+    //Called if update failed
     private void handleUpdateFailed(String error){
         progressDialog.dismiss();
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
 
+    //Get logged in user's details from db
     private void getUserDetails() {
         new Thread(() -> {
             List<UserEntity> users = databaseManager.db().userDao().getAll();

@@ -45,6 +45,7 @@ public class LogIn extends AppCompatActivity {
 
     }
 
+    //Called to log in to the user account
     private void login(){
         if(!emailEditText.getText().toString().isEmpty() && !passwordEditText.getText().toString().isEmpty()) {
             progressDialog = new ProgressDialog(this);
@@ -63,6 +64,7 @@ public class LogIn extends AppCompatActivity {
 
     }
 
+    //Called if login was successful
     private void handleLoginSuccess(){
         //logInManager.setLoggedInState(true);
         Toast.makeText(this, "SUCCESS", Toast.LENGTH_LONG).show();
@@ -73,11 +75,13 @@ public class LogIn extends AppCompatActivity {
     }
 
 
+    //Called if login failed
     private void handleLoginFailed(String error){
         progressDialog.dismiss();
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
 
+    //Open sign up screen
     private void goToSignUp() {
         Intent intent = new Intent(this, TravelerSignUp.class);
         startActivity(intent);

@@ -17,6 +17,7 @@ public class SignUpManager {
     private static SignUpManager singleton;
     private SignUpService signUpService;
 
+    //return SignUpManager singleton object
     public static SignUpManager getInstance() {
         if (singleton == null)
             singleton = new SignUpManager();
@@ -28,12 +29,13 @@ public class SignUpManager {
         signUpService = NetworkManager.getInstance().createService(SignUpService.class);
     }
 
+    //Calls backend API to create a new account
     public void signUp(
             String nic,
             String firstName,
             String lastName,
             String dateOfBirth,
-            String phoneNo,
+            int phoneNo,
             String email,
             String password,
             Runnable onSuccess,
@@ -45,17 +47,20 @@ public class SignUpManager {
         }
 
         SignUpRequest body = new SignUpRequest(nic, firstName, lastName, dateOfBirth, phoneNo, email, password);
+
         signUpService.signUp(body)
                 .enqueue(new Callback<SignUpResponse>() {
                     @Override
                     public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
-                        onSuccess.run();
-                        /*
-                        if (response.body().success) {
+                        Log.i("SIGNUPRES:", String.valueOf(response.code()));
+                        Log.i("URL:", call.request().url().toString());
+
+
+                        if (response.code() == 201) {
                             onSuccess.run();
                         } else {
                             onError.accept("An error occurred!");
-                        }*/
+                        }
                     }
 
                     @Override

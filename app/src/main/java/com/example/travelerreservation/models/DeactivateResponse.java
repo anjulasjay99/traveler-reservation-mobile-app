@@ -1,6 +1,6 @@
 package com.example.travelerreservation.models;
 
-public class SignUpResponse {
+public class DeactivateResponse {
     public String id;
     public String nic;
     public String firstName;

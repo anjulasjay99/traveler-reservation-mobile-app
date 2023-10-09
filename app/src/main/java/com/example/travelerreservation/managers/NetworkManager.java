@@ -12,9 +12,10 @@ public class NetworkManager {
     private static NetworkManager singleton;
 
     private Retrofit retrofit;
-    private final String baseUrl = "https://192.168.8.163:44433/";
+    private final String baseUrl = "https://localhost:44433/api/";
     private ConnectivityManager connectivityManager;
 
+    //Returns NetworkManager singleton object
     public static NetworkManager getInstance(){
         if (singleton == null)
             singleton = new NetworkManager();
@@ -33,6 +34,7 @@ public class NetworkManager {
         return retrofit.create(serviceClass);
     }
 
+    //Check whether the device is connected to internet or not
     public boolean isNetworkAvailable(){
         Context context = ContextManager.getInstance().getApplicationContext();
 

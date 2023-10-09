@@ -6,6 +6,7 @@ public class ContextManager {
     private static ContextManager singleton;
     private Context applicationContext;
 
+    //Returns ContextManager singleton object
     public static ContextManager getInstance() {
         if (singleton == null)
             singleton = new ContextManager();

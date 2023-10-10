@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,7 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TravelerReservation"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ActivityReservationHistory"
+            android:exported="false" />
         <activity
             android:name=".ActivityReservationSummary"
             android:exported="false" />
@@ -24,7 +27,7 @@
             android:name=".Reservation_Item"
             android:exported="false" />
         <activity
-            android:name=".ViewReservations"
+            android:name=".ViewReservationsActivity"
             android:exported="false" />
         <activity
             android:name=".Reservation"
@@ -33,14 +36,14 @@
             android:theme="@style/Theme.TravelerReservation" />
         <activity
             android:name=".DeactivateProfile"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.travelerreservation.TravelerProfile" />
         </activity>
         <activity
             android:name=".TravelerProfile"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.travelerreservation.MainActivity" />
@@ -50,7 +53,7 @@
             android:exported="false" />
         <activity
             android:name=".UpdateProfile"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.travelerreservation.TravelerProfile" />
@@ -70,8 +73,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
-
 
 </manifest>

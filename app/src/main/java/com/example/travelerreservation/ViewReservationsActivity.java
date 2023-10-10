@@ -11,10 +11,13 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewReservationsActivity extends Activity {
+public class ViewReservationsActivity extends AppCompatActivity {
 
     private ListView reservationsListView;
     private List<Reservation> reservationList;
@@ -27,6 +30,7 @@ public class ViewReservationsActivity extends Activity {
 
         reservationsListView = findViewById(R.id.reservationsListView);
         reservationList = new ArrayList<>(); // Replace with your data source
+
 
         // Create a custom adapter to display reservations
         reservationAdapter = new ReservationAdapter();
@@ -54,7 +58,7 @@ public class ViewReservationsActivity extends Activity {
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = LayoutInflater.from(ViewReservationsActivity.this).inflate(R.layout.reservation_item, parent, false);
+                convertView = LayoutInflater.from(ViewReservationsActivity.this).inflate(R.layout.activity_reservation_item, parent, false);
             }
 
             TextView customerNameTextView = convertView.findViewById(R.id.customerNameTextView);
@@ -77,6 +81,7 @@ public class ViewReservationsActivity extends Activity {
                     intent.putExtra("customerName", reservation.getCustomerName());
                     intent.putExtra("trainName", reservation.getTrainName());
                     intent.putExtra("dateAndTime", reservation.getDateAndTime());
+                    intent.putExtra("action", "Edit");
                     startActivityForResult(intent, 201);
                 }
             });
@@ -89,6 +94,7 @@ public class ViewReservationsActivity extends Activity {
                     intent.putExtra("customerName", reservation.getCustomerName());
                     intent.putExtra("trainName", reservation.getTrainName());
                     intent.putExtra("dateAndTime", reservation.getDateAndTime());
+                    intent.putExtra("action", "Delete");
                     startActivityForResult(intent, 201);
                 }
             });

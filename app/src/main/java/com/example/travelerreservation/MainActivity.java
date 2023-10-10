@@ -20,6 +20,11 @@ public class MainActivity extends AppCompatActivity {
     Button myProfile;
 
     LogInManager logInManager;
+
+    Button makeBooking;
+
+    Button viewBookings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,16 +34,23 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Home");
 
 
-        this.logInManager = LogInManager.getInstance();
-
-        if(!this.logInManager.getIsLoggedIn()) {
-            this.onClickLogin();
-        }
+//        this.logInManager = LogInManager.getInstance();
+//
+//        if(!this.logInManager.getIsLoggedIn()) {
+//            this.onClickLogin();
+//        }
 
 
         this.myProfile = findViewById(R.id.viewProfileBtn);
-
         this.myProfile.setOnClickListener(view -> onClickMyProfile());
+
+        this.makeBooking = findViewById(R.id.makeBookingBtn);
+        this.makeBooking.setOnClickListener(view -> onClickMakeBooking());
+
+        this.viewBookings = findViewById(R.id.viewBookingsBtn);
+        this.viewBookings.setOnClickListener(view -> onClickViewBookings());
+
+
     }
 
     private void onClickTravelerSignUp() {
@@ -67,5 +79,17 @@ public class MainActivity extends AppCompatActivity {
     private void onClickMyProfile() {
         Intent intent = new Intent(this, TravelerProfile.class);
         startActivity(intent);
+    }
+
+    private void onClickMakeBooking() {
+        Intent intent = new Intent(this, Reservation.class);
+        startActivity(intent);
+        //finish();
+    }
+
+    private void onClickViewBookings() {
+        Intent intent = new Intent(this, ViewReservationsActivity.class);
+        startActivity(intent);
+        //finish();
     }
 }

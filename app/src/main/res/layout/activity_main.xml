@@ -1,23 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+
+
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:columnCount="2"
+    android:rowCount="2"
+    android:padding="16dp"
+    android:layout_gravity="center"
+    tools:context=".MenuActivity">
 
+    <!-- Card 1: Make a Booking -->
+    <Button
+        android:id="@+id/makeBookingBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Make a Booking"
+        android:background="#0077FF"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:onClick="onMakeBookingClick"/>
 
+    <!-- Card 2: View Bookings -->
+    <Button
+        android:id="@+id/viewBookingsBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="View Bookings"
+        android:background="#0077FF"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:onClick="onViewBookingsClick"/>
+
+    <!-- Card 3: Log Out -->
     <Button
         android:id="@+id/viewProfileBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="341dp"
-        android:layout_marginEnd="149dp"
-        android:layout_marginBottom="342dp"
-        android:text="@string/my_profile"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:background="#0077FF"
+        android:gravity="center"
+        android:onClick="onLogOutClick"
+        android:text="View Profile"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <!-- Card 4: Sign Up -->
+    <Button
+        android:id="@+id/signUpBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:background="#0077FF"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF"
+        android:onClick="onSignUpClick"/>
+</GridLayout>

@@ -18,15 +18,32 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityReservationHistory"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityReservationSummary"
+            android:exported="false" />
+        <activity
+            android:name=".Reservation_Item"
+            android:exported="false" />
+        <activity
+            android:name=".ViewReservationsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Reservation"
+            android:exported="false"
+            android:label="@string/title_activity_reservation"
+            android:theme="@style/Theme.TravelerReservation" />
+        <activity
             android:name=".DeactivateProfile"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.travelerreservation.TravelerProfile" />
         </activity>
         <activity
             android:name=".TravelerProfile"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.travelerreservation.MainActivity" />
@@ -36,7 +53,7 @@
             android:exported="false" />
         <activity
             android:name=".UpdateProfile"
-            android:exported="false" >
+            android:exported="false">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.travelerreservation.TravelerProfile" />

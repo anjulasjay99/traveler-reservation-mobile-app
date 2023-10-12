@@ -31,10 +31,23 @@ public class ViewReservationsActivity extends AppCompatActivity {
         reservationsListView = findViewById(R.id.reservationsListView);
         reservationList = new ArrayList<>(); // Replace with your data source
 
-
         // Create a custom adapter to display reservations
         reservationAdapter = new ReservationAdapter();
         reservationsListView.setAdapter(reservationAdapter);
+
+        // Create a new Reservation object and add it to the reservationList
+        Reservation reservation1 = new Reservation("John Doe", "Train A", "2023-10-15 10:00 AM");
+        reservationList.add(reservation1);
+
+        Reservation reservation2 = new Reservation("Alice Smith", "Train B", "2023-10-16 11:30 AM");
+        reservationList.add(reservation2);
+
+        Reservation reservation3 = new Reservation("Bob Johnson", "Train C", "2023-10-17 03:45 PM");
+        reservationList.add(reservation3);
+
+        // Make sure to notify the adapter that the data has changed
+        reservationAdapter.notifyDataSetChanged();
+
     }
 
     // Custom adapter to populate the ListView with reservations

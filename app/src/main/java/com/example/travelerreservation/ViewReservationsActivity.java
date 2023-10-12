@@ -36,13 +36,13 @@ public class ViewReservationsActivity extends AppCompatActivity {
         reservationsListView.setAdapter(reservationAdapter);
 
         // Create a new Reservation object and add it to the reservationList
-        Reservation reservation1 = new Reservation("John Doe", "Train A", "2023-10-15 10:00 AM");
+        Reservation reservation1 = new Reservation("John Doe", "Train A", "2023-10-15" ,  "10:00 AM");
         reservationList.add(reservation1);
 
-        Reservation reservation2 = new Reservation("Alice Smith", "Train B", "2023-10-16 11:30 AM");
+        Reservation reservation2 = new Reservation("Alice Smith", "Train B", "2023-10-16" , "11:30 AM");
         reservationList.add(reservation2);
 
-        Reservation reservation3 = new Reservation("Bob Johnson", "Train C", "2023-10-17 03:45 PM");
+        Reservation reservation3 = new Reservation("Bob Johnson", "Train C", "2023-10-17" ,"03:45 PM");
         reservationList.add(reservation3);
 
         // Make sure to notify the adapter that the data has changed
@@ -84,7 +84,7 @@ public class ViewReservationsActivity extends AppCompatActivity {
 
             customerNameTextView.setText(reservation.getCustomerName());
             trainNameTextView.setText(reservation.getTrainName());
-            dateAndTimeTextView.setText(reservation.getDateAndTime());
+            dateAndTimeTextView.setText(reservation.getDate() + reservation.getTime());
 
             editReservationButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -93,7 +93,8 @@ public class ViewReservationsActivity extends AppCompatActivity {
                     Intent intent = new Intent(ViewReservationsActivity.this, ActivityReservationSummary.class);
                     intent.putExtra("customerName", reservation.getCustomerName());
                     intent.putExtra("trainName", reservation.getTrainName());
-                    intent.putExtra("dateAndTime", reservation.getDateAndTime());
+                    intent.putExtra("date", reservation.getDate());
+                    intent.putExtra("time", reservation.getTime());
                     intent.putExtra("action", "Edit");
                     startActivityForResult(intent, 201);
                 }
@@ -106,7 +107,8 @@ public class ViewReservationsActivity extends AppCompatActivity {
                     Intent intent = new Intent(ViewReservationsActivity.this, ActivityReservationSummary.class);
                     intent.putExtra("customerName", reservation.getCustomerName());
                     intent.putExtra("trainName", reservation.getTrainName());
-                    intent.putExtra("dateAndTime", reservation.getDateAndTime());
+                    intent.putExtra("date", reservation.getDate());
+                    intent.putExtra("time", reservation.getTime());
                     intent.putExtra("action", "Delete");
                     startActivityForResult(intent, 201);
                 }
@@ -121,12 +123,15 @@ public class ViewReservationsActivity extends AppCompatActivity {
     private class Reservation {
         private String customerName;
         private String trainName;
-        private String dateAndTime;
+        private String date;
 
-        public Reservation(String customerName, String trainName, String dateAndTime) {
+        private String time;
+
+        public Reservation(String customerName, String trainName, String date, String time) {
             this.customerName = customerName;
             this.trainName = trainName;
-            this.dateAndTime = dateAndTime;
+            this.date = date;
+            this.time = time;
         }
 
         public String getCustomerName() {
@@ -137,8 +142,11 @@ public class ViewReservationsActivity extends AppCompatActivity {
             return trainName;
         }
 
-        public String getDateAndTime() {
-            return dateAndTime;
+        public String getDate() {
+            return date;
+        }
+        public String getTime() {
+            return time;
         }
     }
 }

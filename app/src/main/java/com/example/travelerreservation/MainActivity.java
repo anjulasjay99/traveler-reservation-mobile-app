@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Home");
 
 
-//        this.logInManager = LogInManager.getInstance();
-//
-//        if(!this.logInManager.getIsLoggedIn()) {
-//            this.onClickLogin();
-//        }
+        this.logInManager = LogInManager.getInstance();
+
+        if(!this.logInManager.getIsLoggedIn()) {
+           this.onClickLogin();
+        }
 
 
         this.myProfile = findViewById(R.id.viewProfileBtn);
@@ -49,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
 
         this.viewBookings = findViewById(R.id.viewBookingsBtn);
         this.viewBookings.setOnClickListener(view -> onClickViewBookings());
+
+        this.logout = findViewById(R.id.logoutBtn);
+        this.logout.setOnClickListener(view -> onClickLogout());
 
 
     }

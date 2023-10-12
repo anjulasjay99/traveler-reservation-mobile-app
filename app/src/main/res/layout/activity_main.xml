@@ -12,6 +12,7 @@
     android:columnCount="2"
     android:rowCount="2"
     android:padding="16dp"
+    android:useDefaultMargins="true"
     android:layout_gravity="center"
     tools:context=".MenuActivity">
 
@@ -27,6 +28,9 @@
         android:gravity="center"
         android:textSize="18sp"
         android:textColor="#FFFFFF"
+        app:icon="@drawable/baseline_train_24"
+        app:iconGravity="textTop"
+        app:iconSize="38dp"
         android:onClick="onMakeBookingClick"/>
 
     <!-- Card 2: View Bookings -->
@@ -41,6 +45,9 @@
         android:gravity="center"
         android:textSize="18sp"
         android:textColor="#FFFFFF"
+        app:icon="@drawable/baseline_checklist_24"
+        app:iconGravity="textTop"
+        app:iconSize="38dp"
         android:onClick="onViewBookingsClick"/>
 
     <!-- Card 3: Log Out -->
@@ -50,24 +57,31 @@
         android:layout_height="wrap_content"
         android:layout_rowWeight="1"
         android:layout_columnWeight="1"
-        android:background="#0077FF"
+        android:layout_gravity="fill_horizontal"
         android:gravity="center"
+        android:background="#0077FF"
         android:onClick="onLogOutClick"
+        app:icon="@drawable/baseline_account_circle_24"
+        app:iconGravity="textTop"
+        app:iconSize="38dp"
         android:text="View Profile"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
 
     <!-- Card 4: Sign Up -->
     <Button
-        android:id="@+id/signUpBtn"
+        android:id="@+id/logoutBtn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
+        android:text="@string/logout"
         android:background="#0077FF"
         android:layout_columnWeight="1"
         android:layout_rowWeight="1"
         android:gravity="center"
         android:textSize="18sp"
         android:textColor="#FFFFFF"
+        app:icon="@drawable/baseline_logout_24"
+        app:iconGravity="textTop"
+        app:iconSize="38dp"
         android:onClick="onSignUpClick"/>
 </GridLayout>

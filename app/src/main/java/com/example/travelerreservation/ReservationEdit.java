@@ -41,11 +41,14 @@ public class ReservationEdit extends AppCompatActivity {
         setContentView(R.layout.activity_reservation_edit);
 
 
-        // Populate the train name dropdown (Spinner) with data
-        ArrayAdapter<String> trainNameAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getTrainNames());
-        trainNameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        trainNameSpinner.setAdapter(trainNameAdapter);
+        getSupportActionBar().setTitle("Edit Reservation");
 
+
+        // Populate the train name dropdown (Spinner) with data
+//        ArrayAdapter<String> trainNameAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getTrainNames());
+//        trainNameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        trainNameSpinner.setAdapter(trainNameAdapter);
+//
         // Initialize the edit TextViews
         customerNameEditText = findViewById(R.id.customerNameEditText);
         trainNameSpinner = findViewById(R.id.trainNameSpinner);
@@ -69,11 +72,12 @@ public class ReservationEdit extends AppCompatActivity {
         String date = intent.getStringExtra("date");
         String time = intent.getStringExtra("time");
 
+        int selection = 1;
         customerNameEditText.setText(customerName);
-        trainNameSpinner.setSelection(getIndexOfTrainName(trainName));
+        trainNameSpinner.setSelection(selection);
         dateButton.setText(date);
         timeButton.setText(time);
-
+//
         editReservationButton.setOnClickListener(v -> {
             // Get the edited values
             String editedCustomerName = customerNameEditText.getText().toString();
@@ -112,9 +116,9 @@ public class ReservationEdit extends AppCompatActivity {
                 );
             }
         });
-
-    }
-
+//
+   }
+//
     private String[] getTrainNames() {
         return new String[]{"Train A", "Train B", "Train C"};
     }

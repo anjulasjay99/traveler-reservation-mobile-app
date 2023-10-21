@@ -33,7 +33,6 @@ public class ReservationManager {
         reservationService = NetworkManager.getInstance().createService(ReservationApiService.class);
     }
 
-    //Calls backend API to create a new reservation
     public void addReservation(
             String customerName,
             String trainName,
@@ -48,10 +47,8 @@ public class ReservationManager {
                 return;
             }
 
-            // Create a ReservationRequest object with the provided data
             ReservationRequest request = new ReservationRequest(customerName, trainName, dateOfBooking, timeOfBooking);
 
-            // Call your Retrofit API service to create a reservation
             reservationService.addReservation(request).enqueue(new Callback<ReservationResponse>() {
                 @Override
                 public void onResponse(Call<ReservationResponse> call, Response<ReservationResponse> response) {
@@ -90,25 +87,20 @@ public class ReservationManager {
             return;
         }
 
-        // Create a ReservationRequest object with the updated data
         ReservationRequest request = new ReservationRequest(customerName, trainName, dateOfBooking, timeOfBooking);
 
-        // Call your Retrofit API service to edit the reservation
         reservationService.editReservation(reservationId, request).enqueue(new Callback<ReservationResponse>() {
             @Override
             public void onResponse(Call<ReservationResponse> call, Response<ReservationResponse> response) {
                 if (response.isSuccessful()) {
-                    // Reservation edited successfully
                     onSuccess.run();
                 } else {
-                    // Handle error response
                     onError.accept("An error occurred when editing the reservation");
                 }
             }
 
             @Override
             public void onFailure(Call<ReservationResponse> call, Throwable t) {
-                // Handle network or API call failure
                 onError.accept("Unknown error occurred when editing the reservation");
             }
         });
@@ -125,22 +117,18 @@ public class ReservationManager {
             return;
         }
 
-        // Call your Retrofit API service to remove the reservation
         reservationService.deleteReservation(reservationId).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()) {
-                    // Reservation removed successfully
                     onSuccess.run();
                 } else {
-                    // Handle error response
                     onError.accept("An error occurred when removing the reservation");
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                // Handle network or API call failure
                 onError.accept("Unknown error occurred when removing the reservation");
             }
         });
@@ -156,23 +144,19 @@ public class ReservationManager {
             return;
         }
 
-        // Call your Retrofit API service to get a list of reservations
         reservationService.getReservations().enqueue(new Callback<List<ReservationResponse>>() {
             @Override
             public void onResponse(Call<List<ReservationResponse>> call, Response<List<ReservationResponse>> response) {
                 if (response.isSuccessful()) {
-                    // Reservations retrieved successfully
                     List<ReservationResponse> reservations = response.body();
                     onSuccess.accept(reservations);
                 } else {
-                    // Handle error response
                     onError.accept("An error occurred when fetching reservations");
                 }
             }
 
             @Override
             public void onFailure(Call<List<ReservationResponse>> call, Throwable t) {
-                // Handle network or API call failure
                 onError.accept("Unknown error occurred when fetching reservations");
             }
         });

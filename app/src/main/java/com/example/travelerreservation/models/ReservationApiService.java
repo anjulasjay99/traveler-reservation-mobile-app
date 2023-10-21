@@ -12,19 +12,19 @@ import retrofit2.http.Path;
 
 public interface ReservationApiService {
 
-    @POST("api/reservations")
+    @POST("api/ticket")
     Call<ReservationResponse> addReservation(@Body ReservationRequest request);
 
-    @PUT("api/reservations/{reservationId}")
+    @PUT("api/ticket/{reservationId}")
     Call<ReservationResponse> editReservation(
             @Path("reservationId") int reservationId,
             @Body ReservationRequest request
     );
 
-    @DELETE("api/reservations/{reservationId}")
+    @DELETE("api/ticket/{reservationId}")
     Call<Void> deleteReservation(@Path("reservationId") int reservationId);
 
-    @GET("api/reservations")
+    @GET("api/ticket")
     Call<List<ReservationResponse>> getReservations();
 }
 

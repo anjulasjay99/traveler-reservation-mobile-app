@@ -94,8 +94,8 @@ public class Reservation extends AppCompatActivity  {
                 // Get the values from the form
                 customerName = customerNameEditText.getText().toString();
                 selectedTrainName = trainNameSpinner.getSelectedItem().toString();
-//                date = dateEditText.getText().toString();
-//                time = timeEditText.getText().toString();
+                date = dateEditText.getText().toString();
+                time = timeEditText.getText().toString();
 
                 reservationManager.addReservation(customerName,selectedTrainName,date,time,() -> handleReservationSuccessful(),
                         error -> handleReservationFailed(error));
@@ -105,7 +105,7 @@ public class Reservation extends AppCompatActivity  {
     }
 
     private String[] getTrainNames() {
-        return new String[]{"Train A", "Train B", "Train C"};
+        return new String[]{"Ruhunu Kumari", "Galu Kumari", "Kandy Express"};
     }
 
     private void handleReservationSuccessful(){

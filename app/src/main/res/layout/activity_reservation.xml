@@ -25,32 +25,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <EditText
-        android:id="@+id/dateEditText"
+    <Button
+        android:id="@+id/dateButton"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:hint="Date of Booking"
-        app:layout_constraintTop_toBottomOf="@id/trainNameSpinner"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/trainNameSpinner" />
 
-    <EditText
-        android:id="@+id/timeEditText"
+    <Button
+        android:id="@+id/timeButton"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:hint="Time of Booking"
-        app:layout_constraintTop_toBottomOf="@id/dateEditText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/dateButton" />
 
     <Button
         android:id="@+id/createReservationButton"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:text="Create Reservation"
-        app:layout_constraintTop_toBottomOf="@id/timeEditText"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timeButton"
+        app:layout_constraintVertical_bias="0.959" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

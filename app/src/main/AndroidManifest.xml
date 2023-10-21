@@ -18,6 +18,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ReservationEdit"
+            android:exported="false" />
+        <activity
             android:name=".ActivityReservationHistory"
             android:exported="false" />
         <activity

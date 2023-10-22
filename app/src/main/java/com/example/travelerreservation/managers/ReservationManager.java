@@ -40,12 +40,14 @@ public class ReservationManager {
             String timeOfBooking,
             Runnable onSuccess,
             Consumer<String> onError
-    ) {
+    )
         {
             if (!NetworkManager.getInstance().isNetworkAvailable()) {
                 onError.accept("No internet connectivity");
                 return;
             }
+
+            Log.i("ADDRSV", "INNNNN");
 
             ReservationRequest request = new ReservationRequest(customerName, trainName, dateOfBooking, timeOfBooking);
 
@@ -53,9 +55,11 @@ public class ReservationManager {
                 @Override
                 public void onResponse(Call<ReservationResponse> call, Response<ReservationResponse> response) {
                     if (response.isSuccessful()) {
+                        Log.i("REQ", request.getCustomerName());
                         // Reservation created successfully
                         onSuccess.run();
                     } else {
+
                         // Handle error response
                         onError.accept("An error occurred when creating the reservation");
                     }
@@ -63,18 +67,19 @@ public class ReservationManager {
 
                 @Override
                 public void onFailure(Call<ReservationResponse> call, Throwable t) {
+                    Log.e("RSVERR:", t.toString());
                     // Handle network or API call failure
                     onError.accept("Unknown error occurred when creating the reservation");
                 }
             });
 
         }
-    }
+
 
 
 
     public void editReservation(
-            int reservationId,
+            String reservationId,
             String customerName,
             String trainName,
             String dateOfBooking,
@@ -95,12 +100,14 @@ public class ReservationManager {
                 if (response.isSuccessful()) {
                     onSuccess.run();
                 } else {
+                    Log.e("EDIRERRCODE", String.valueOf(response.code()));
                     onError.accept("An error occurred when editing the reservation");
                 }
             }
 
             @Override
             public void onFailure(Call<ReservationResponse> call, Throwable t) {
+                Log.e("EDIRERR", t.toString());
                 onError.accept("Unknown error occurred when editing the reservation");
             }
         });
@@ -123,6 +130,7 @@ public class ReservationManager {
                 if (response.isSuccessful()) {
                     onSuccess.run();
                 } else {
+
                     onError.accept("An error occurred when removing the reservation");
                 }
             }
@@ -157,6 +165,7 @@ public class ReservationManager {
 
             @Override
             public void onFailure(Call<List<ReservationResponse>> call, Throwable t) {
+                Log.e("GETRSV", t.toString());
                 onError.accept("Unknown error occurred when fetching reservations");
             }
         });

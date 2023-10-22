@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.travelerreservation.managers.ReservationManager;
+
+import java.util.ArrayList;
 
 public class ReservationEdit extends AppCompatActivity {
 
@@ -35,19 +38,16 @@ public class ReservationEdit extends AppCompatActivity {
     private ReservationManager reservationManager;
     private ProgressDialog progressDialog;
 
+    private String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation_edit);
 
+        reservationManager = ReservationManager.getInstance();
 
         getSupportActionBar().setTitle("Edit Reservation");
 
-
-        // Populate the train name dropdown (Spinner) with data
-//        ArrayAdapter<String> trainNameAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getTrainNames());
-//        trainNameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        trainNameSpinner.setAdapter(trainNameAdapter);
 //
         // Initialize the edit TextViews
         customerNameEditText = findViewById(R.id.customerNameEditText);
@@ -65,20 +65,27 @@ public class ReservationEdit extends AppCompatActivity {
         // Initialize the Confirm Button
         confirmButton = findViewById(R.id.confirmButton);
 
+
+        // Populate the train name dropdown (Spinner) with data
+        ArrayAdapter<String> trainNameAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, getTrainNames());
+        trainNameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        trainNameSpinner.setAdapter(trainNameAdapter);
+
         // Retrieve reservation data from the Intent
         Intent intent = getIntent();
         String customerName = intent.getStringExtra("customerName");
         String trainName = intent.getStringExtra("trainName");
         String date = intent.getStringExtra("date");
         String time = intent.getStringExtra("time");
+        id = intent.getStringExtra("id");
 
-        int selection = 1;
+        int selection = getIndexOfTrainName(trainName);
         customerNameEditText.setText(customerName);
         trainNameSpinner.setSelection(selection);
         dateButton.setText(date);
         timeButton.setText(time);
 //
-        editReservationButton.setOnClickListener(v -> {
+        confirmButton.setOnClickListener(v -> {
             // Get the edited values
             String editedCustomerName = customerNameEditText.getText().toString();
             String editedTrainName = trainNameSpinner.getSelectedItem().toString();
@@ -95,9 +102,10 @@ public class ReservationEdit extends AppCompatActivity {
             customerTimeSummary.setText("Time: " + editedTime);
         });
 
-        confirmButton.setOnClickListener(new View.OnClickListener() {
+        editReservationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.i("EDITCLICK", "INNN");
                 // Retrieve the edited values from the UI elements
                 String editedCustomerName = customerNameEditText.getText().toString();
                 String editedTrainName = trainNameSpinner.getSelectedItem().toString();
@@ -106,7 +114,7 @@ public class ReservationEdit extends AppCompatActivity {
 
                 // Call the reservationManager.editReservation method
                 reservationManager.editReservation(
-                        1001,
+                        id,
                         editedCustomerName,
                         editedTrainName,
                         editedDate,
@@ -120,7 +128,7 @@ public class ReservationEdit extends AppCompatActivity {
    }
 //
     private String[] getTrainNames() {
-        return new String[]{"Train A", "Train B", "Train C"};
+        return new String[]{"Ruhunu Kumari", "Galu Kumari", "Kandy Express"};
     }
 
     private int getIndexOfTrainName(String targetTrainName) {
@@ -136,15 +144,16 @@ public class ReservationEdit extends AppCompatActivity {
         return 0;
     }
     private void handleReservationEditSuccessful(){
-        progressDialog.dismiss();
+
         Toast.makeText(this, "Successful!", Toast.LENGTH_LONG).show();
-        summaryCard.setVisibility(View.GONE);
+        //summaryCard.setVisibility(View.GONE);
     }
 
 
     private void handleReservationEditFailed(String error){
-        progressDialog.dismiss();
+
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
+
 }
 

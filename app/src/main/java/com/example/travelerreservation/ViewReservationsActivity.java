@@ -37,6 +37,8 @@ public class ViewReservationsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_reservations);
 
+        reservationManager = ReservationManager.getInstance();
+
         reservationsListView = findViewById(R.id.reservationsListView);
         reservationList = new ArrayList<ReservationResponse>(); // Replace with your data source
 
@@ -113,10 +115,11 @@ public class ViewReservationsActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     // Pass reservation data to the summary activity
                     Intent intent = new Intent(ViewReservationsActivity.this, ReservationEdit.class);
+                    intent.putExtra("id", reservation.getId());
                     intent.putExtra("customerName", reservation.getCustomerName());
                     intent.putExtra("trainName", reservation.getTrainName());
-//                    intent.putExtra("date", reservation.getDate());
-//                    intent.putExtra("time", reservation.getTime());
+                    intent.putExtra("date", reservation.getDateOfBooking());
+                    intent.putExtra("time", reservation.getTimeOfBooking());
                     intent.putExtra("action", "Edit");
                     startActivityForResult(intent, 201);
                 }

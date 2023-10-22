@@ -54,7 +54,7 @@ public class ActivityReservationSummary extends AppCompatActivity {
 
                 if(action == "Edit"){
 
-                    reservationManager.editReservation(1001, customerName,trainName,"date","time",() -> handleReservationEditSuccessful(),
+                    reservationManager.editReservation("1001", customerName,trainName,"date","time",() -> handleReservationEditSuccessful(),
                             error -> handleReservationEditFailed(error));
                 } else if (action == "Delete") {
                     reservationManager.removeReservation(1001,  () -> handleReservationDeleteSuccessful(),

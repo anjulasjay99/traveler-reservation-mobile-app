@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
         this.logInManager = LogInManager.getInstance();
 
-//        if(!this.logInManager.getIsLoggedIn()) {
-//           this.onClickLogin();
-//        }
+        if(!this.logInManager.getIsLoggedIn()) {
+           this.onClickLogin();
+        }
 
 
         this.myProfile = findViewById(R.id.viewProfileBtn);

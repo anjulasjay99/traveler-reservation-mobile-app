@@ -14,6 +14,7 @@ import android.os.Bundle;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -59,6 +60,8 @@ public class Reservation extends AppCompatActivity  {
         getSupportActionBar().setTitle("Make Reservation");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        reservationManager = ReservationManager.getInstance();
+
         customerNameEditText = findViewById(R.id.customerNameEditText);
         trainNameSpinner = findViewById(R.id.trainNameSpinner);
 
@@ -91,11 +94,16 @@ public class Reservation extends AppCompatActivity  {
         createReservationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("ONCLICK", "CLICKED");
                 // Get the values from the form
                 customerName = customerNameEditText.getText().toString();
                 selectedTrainName = trainNameSpinner.getSelectedItem().toString();
-                date = dateEditText.getText().toString();
-                time = timeEditText.getText().toString();
+                //date = dateEditText.getText().toString();
+                //time = timeEditText.getText().toString();
+
+                Log.i("AFTER", date);
+
+
 
                 reservationManager.addReservation(customerName,selectedTrainName,date,time,() -> handleReservationSuccessful(),
                         error -> handleReservationFailed(error));
@@ -109,15 +117,15 @@ public class Reservation extends AppCompatActivity  {
     }
 
     private void handleReservationSuccessful(){
-        progressDialog.dismiss();
+        //progressDialog.dismiss();
         Toast.makeText(this, "Successful!", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(this, LogIn.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, LogIn.class);
+        //startActivity(intent);
     }
 
 
     private void handleReservationFailed(String error){
-        progressDialog.dismiss();
+        //progressDialog.dismiss();
         Toast.makeText(this, error, Toast.LENGTH_LONG).show();
     }
 

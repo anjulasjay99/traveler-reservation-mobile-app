@@ -1,7 +1,7 @@
 package com.example.travelerreservation.models;
 
 public class ReservationResponse {
-    private int id;
+    private String id;
     private String customerName;
     private String trainName;
     private String dateOfBooking;
@@ -11,7 +11,7 @@ public class ReservationResponse {
     public ReservationResponse() {
     }
 
-    public ReservationResponse(int id, String customerName, String trainName, String dateOfBooking, String timeOfBooking) {
+    public ReservationResponse(String id, String customerName, String trainName, String dateOfBooking, String timeOfBooking) {
         this.id = id;
         this.customerName = customerName;
         this.trainName = trainName;
@@ -20,11 +20,11 @@ public class ReservationResponse {
     }
 
     // Getters and setters
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
